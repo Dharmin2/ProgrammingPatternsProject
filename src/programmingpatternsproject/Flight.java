@@ -33,16 +33,16 @@ public class Flight {
         this.available = available;
         this.amount = amount;
     }
-    public Flight() {
-        this.flightN = "";
-        this.name = "";
-        this.origin = "";
-        this.dest = "";
-        this.duration = 0;
-        this.seats = 0;
-        this.available = 0;
-        this.amount = 0;
-    }
+//    public Flight() {
+//        this.flightN = "";
+//        this.name = "";
+//        this.origin = "";
+//        this.dest = "";
+//        this.duration = 0;
+//        this.seats = 1;
+//        this.available = 2;
+//        this.amount = 3;
+//    }
         
     public String getFlightN() {
         return flightN;
@@ -107,5 +107,12 @@ public class Flight {
     public void setAmount(double amount) {
         this.amount = amount;
     }
-
+    
+    @Override
+    public String toString() {
+        return "Flight{" + "flightN=" + flightN + ", name=" + name + 
+                ", origin=" + origin + ", dest=" + dest + ", duration=" +
+                duration + ", seats=" + seats + ", available=" + available + 
+                ", amount=" + amount + '}';
+    }
 }
