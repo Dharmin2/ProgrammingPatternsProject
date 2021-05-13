@@ -13,31 +13,29 @@ import java.sql.SQLException;
  *
  * @author Dharmin
  */
-public class DatabaseConnection {
+class DatabaseConnection {
 
-    private static DatabaseConnection instance;
-    private Connection connection;
+    private static Connection connect;
 
-    private DatabaseConnection() throws SQLException {
+    public static Connection getInstance() {
+        if (connect == null) {
+            connect = createConnection();
+        }
+        return connect;
+    }  // Singleton Design pattern
+
+    private static Connection createConnection() {
+        String dbUrl = "jdbc:sqlite:src\\db\\LFRS_db.db";
+        Connection c = null;
         try {
             Class.forName("org.sqlite.JDBC");
-            this.connection = DriverManager.getConnection("");
-        } catch (ClassNotFoundException ex) {
-            System.out.println("Database Connection Creation Failed : " + ex.getMessage());
+            c = DriverManager.getConnection(dbUrl);
+            System.out.println("Opened database successfully");
+
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
-    }
-
-    public Connection getConnection() {
-        return connection;
-    }
-
-    public static DatabaseConnection getInstance() throws SQLException {
-        if (instance == null) {
-            instance = new DatabaseConnection();
-        } else if (instance.getConnection().isClosed()) {
-            instance = new DatabaseConnection();
-        }
-
-        return instance;
+        return c;
     }
 }

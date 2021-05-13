@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package prog3.finalproject;
+package programmingpatternsproject;
 
 import java.sql.*;
 import java.util.ArrayList;
